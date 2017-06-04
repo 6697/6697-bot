@@ -2,6 +2,8 @@ import fs from 'fs'
 import path from 'path'
 import request from 'request'
 
+import cheerio from 'cheerio'
+
 import dude from 'debug-dude'
 const { /*debug,*/ log, info, warn /*, error*/ } = dude('bot')
 
@@ -39,15 +41,33 @@ networks.on('message', (evt, reply) => {
   if (/spotify:track:([A-z0-9]+)/.test(evt.text)) {
     let matches = evt.text.match(/spotify:track:([A-z0-9]+)/)
     let id = matches[1]
-    request(`https://api.spotify.com/v1/tracks/${id}`, function (err, res, body) {
-      if (!err && res.statusCode === 200) {
-        let data = JSON.parse(body);
-        let title = data && data.name;
-        let artists = data && data.album && data.album.artists && data.album.artists.map(artist => artist.name).join(', ')
-        let album = data && data.album && data.album.name
-        let image_url = data && data.album.images && data.album.images[0] && data.album.images[0].url
-        let minutes = Math.floor(data && data.duration_ms / 60000)
-        let seconds = ((data && data.duration_ms % 60000) / 1000).toFixed(0)
+    let track_url = `https://open.spotify.com/track/${id}`
+
+    request(track_url, (err, res, body) => {
+      if (err) {
+        throw(err)
+      }
+
+      let $ = cheerio.load(body)
+      let album_url = $('meta[property="music:album"]').attr('content')
+
+      request(album_url, (err, res, body) => {
+        if (err) {
+          throw(err)
+        }
+
+        let $ = cheerio.load(body)
+        cb($('meta[property="og:title"]').attr('content'))
+      })
+
+      let cb = (album) => {
+        let title = $('meta[property="og:title"]').attr('content')
+        let artists = $('meta[property="twitter:audio:artist_name"]').attr('content')
+        let image_url = $('meta[property="og:image"]').attr('content')
+        let duration_s = $('meta[property="music:duration"]').attr('content')
+        let minutes = Math.floor(duration_s / 60)
+        let seconds = ((duration_s % 60)).toFixed(0)
+
         reply({
           type: 'message',
           text: `*${title}* (${minutes}:${seconds < 10 ? '0' : ''}${seconds}) by *${artists}* - in album *${album}*.[​](${image_url})`,

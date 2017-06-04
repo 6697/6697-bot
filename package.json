@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "coffea": "1.0.0-beta18",
-    "debug-dude": "^1.0.3"
+    "debug-dude": "^1.0.3",
+    "cheerio": "^1.0.0-rc.1"
   }
 }
