@@ -25,7 +25,7 @@ networks.on('error', ({ err }) =>
 
 networks.on('new_chat_participant', (evt, reply) => {
   log('Received new_chat_participant event: %o', evt)
-  let name = evt && evt.raw && evt.raw.new_chat_participant && [ evt.raw.new_chat_participant.first_name, evt.raw.new_chat_participant.last_name ].join(' ')
+  let name = evt && evt.raw && evt.raw.new_chat_participant && [ evt.raw.new_chat_participant.first_name, evt.raw.new_chat_participant.last_name ].join(' ').trim()
   reply({
     type: 'message',
     text: `Welcome to #lounge, *${name}*. Please read the rules (/rules) and enjoy your time here!`,
