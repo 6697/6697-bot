@@ -28,7 +28,7 @@ networks.on('new_chat_participant', (evt, reply) => {
   let name = evt && evt.raw && evt.raw.new_chat_participant && [ evt.raw.new_chat_participant.first_name, evt.raw.new_chat_participant.last_name ].join(' ').trim()
   reply({
     type: 'message',
-    text: `Welcome to #lounge, *${name}*. Please read the rules (/rules) and enjoy your time here!`,
+    text: `Welcome to ${evt.raw.chat.title}, *${name}*. Please read the rules (/rules) and enjoy your time here!`,
     options: {
       parse_mode: 'markdown',
       reply_to_message_id: evt && evt.raw && evt.raw.message_id
