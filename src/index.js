@@ -6,7 +6,7 @@ import dude from 'debug-dude'
 const { /*debug,*/ log, info, warn /*, error*/ } = dude('bot')
 
 import { version } from '../package.json'
-info(`coffea-starter bot v${version} starting`)
+info(`#lounge bot v${version} starting`)
 
 import config from '../config.json'
 
