@@ -1,7 +1,7 @@
 {
-  "name": "coffea-starter",
-  "version": "0.0.0",
-  "description": "coffea starter kit / boilerplate to quickly develop a chat bot",
+  "name": "6697-bot",
+  "version": "0.3.1",
+  "description": "Bot for #lounge on Telegram",
   "bin": {
     "bot": "build/index.js"
   },
@@ -17,26 +17,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caffeinery/coffea-starter.git"
+    "url": "git+https://github.com/6697/6697-bot.git"
   },
   "keywords": [
     "coffea",
-    "starter",
-    "kit",
-    "boilerplate",
     "chat",
     "bot",
     "messaging",
-    "slack",
-    "irc",
     "telegram"
   ],
-  "author": "Daniel Bugl <me@omnidan.net>",
+  "author": "Micheal Harker <micheal@michealharker.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/caffeinery/coffea-starter/issues"
+    "url": "https://github.com/6697/6697-bot/issues"
   },
-  "homepage": "https://github.com/caffeinery/coffea-starter#readme",
+  "homepage": "https://github.com/6697/6697-bot#readme",
   "devDependencies": {
     "babel-cli": "^6.8.0",
     "babel-core": "^6.5.1",
@@ -50,6 +45,7 @@
   },
   "dependencies": {
     "coffea": "1.0.0-beta18",
-    "debug-dude": "^1.0.3"
+    "debug-dude": "^1.0.3",
+    "cheerio": "^1.0.0-rc.1"
   }
 }

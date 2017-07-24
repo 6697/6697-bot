@@ -1,13 +1,6 @@
-# coffea-starter
+# 6697-bot
 
-_coffea starter kit / boilerplate to quickly develop a chat bot_
-
-
-## Starting a new project
-
-```
-git clone https://github.com/coffea-bots/coffea-starter PROJECT_NAME
-```
+This is a bot for #lounge on Telegram.
 
 
 ## Setup
@@ -26,23 +19,11 @@ While this is running, you can create a `config.json`, which will be passed to
   {
     "protocol": "telegram",
     "token": "INSERT_TELEGRAM_TOKEN_HERE"
-  },
-  {
-    "protocol": "slack",
-    "token": "INSERT_TELEGRAM_TOKEN_HERE"
-  }
-]
+  }]
 ```
 
-**Important:** Don't forget to install the protocols via `npm install coffea-PROTOCOLNAME`,
-e.g. `npm install coffea-telegram coffea-slack` (in this case)
+**Important:** Don't forget to install the protocol via `npm install coffea-telegram`.
 
-Feel free to add as few or as many networks/protocols as you'd like. Currently,
-only [slack](https://github.com/caffeinery/coffea-slack), [telegram](https://github.com/caffeinery/coffea-telegram) and [irc](https://github.com/caffeinery/coffea-irc) are supported.
-
-Lastly, you should take a look at `src/index.js`. Feel free to adjust the code
-to your liking. As your bot grows, make sure to split it up into separate
-files.
 
 
 ## Running
